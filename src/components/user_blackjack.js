@@ -9,10 +9,10 @@ export default function UserBlackjack(props) {
 
       <div>
             <form onSubmit={props.hitMe}>
-              <button type="submit"> Hit Me </button>
+              <button type="submit" id="hit"> Hit Me </button>
             </form>
           <form onSubmit={props.stay}>
-            <button type="submit"> Stay </button>
+            <button type="submit" id="stay"> Stay </button>
           </form>
         <h1>Player1</h1>
         <h2>Score: {props.score()}</h2>

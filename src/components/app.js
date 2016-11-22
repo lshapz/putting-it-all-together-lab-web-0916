@@ -33,20 +33,27 @@ export default class App extends Component {
     // debugger
     if (event){
       event.preventDefault()
-       this.props.store.dispatch(hitUser(this.props.store.getState()))
+      if (this.calculateUserScore() === ('BUST' || 21)){
+        var btn = document.getElementById("hit")
+        btn.disabled = true
+      }
+      else {this.props.store.dispatch(hitUser(this.props.store.getState()))}
     }
     else {
       this.props.store.dispatch(hitAi(this.props.store.getState()))
     }
   }
   stay(event){
-    debugger
     event.preventDefault()
     var ai = this.calculateAiScore()
     var user = this.calculateUserScore()
     if ((ai < user) && (ai <= 21)){
       this.hitMe()
     }
+    else 
+      { var btn = document.getElementById("stay")
+        btn.disabled = true
+      }
 
 
   }
