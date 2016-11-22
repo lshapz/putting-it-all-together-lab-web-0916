@@ -13,10 +13,15 @@ export default class App extends Component {
   }
 
   calculateUserScore(){
-      return this.props.store.getState().userCards.map( card => {
-         return card.value
-       }).reduce( (a,b) => { return a + b}, 0)
-     }
+    var userScore = this.props.store.getState().userCards.map( card => {
+      return card.value
+    }).reduce( (a,b) => { return a + b}, 0)
+    if(userScore > 21){
+      return 'BUST'
+    } else {
+      return userScore
+    }
+  }
 
   calculateAiScore(){
     return this.props.store.getState().aiCards.map( card => {
@@ -47,12 +52,10 @@ export default class App extends Component {
   }
 
   render(){
-
     return(
       <div>
-      HELLO
-        <UserBlackjack store={this.props.store.getState().userCards} userScore={this.calculateUserScore} handleUserHit={this.hitMe} handleStay={this.stay} />
-        <AIBlackjack store={this.props.store.getState().aiCards} aiScore={this.calculateAiScore} />
+        <UserBlackjack store={this.props.store} userCards={this.props.store.getState().userCards} score={this.calculateUserScore} hitMe={this.hitMe} stay={this.stay} />
+        <AIBlackjack store={this.props.store} aiCards={this.props.store.getState().aiCards} aiScore={this.calculateAiScore} />
       </div>
     )
   }

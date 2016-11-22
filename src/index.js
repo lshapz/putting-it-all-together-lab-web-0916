@@ -14,8 +14,8 @@ export const store = createStore(blackjackReducer)
 export const render =  function render(){
   if(typeof window !== 'undefined') {
 
-  ReactDOM.render(<App store={store} />, document.getElementById('container')) 
- } } //???????
+  ReactDOM.render(<App store={store} />, document.getElementById('container'))
+} } //???????
 
 store.dispatch(fetchDeck())
 store.dispatch(setAICards(store.getState()))
