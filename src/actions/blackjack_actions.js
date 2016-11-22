@@ -15,10 +15,12 @@ export function setAICards(state) {
     rand2 = Math.floor(Math.random() * deck.length )
   }
   var card2 = deck[rand2]
-
+  var new_deck = Array.from(state.deck)
+  new_deck.splice(new_deck.indexOf(card1), 1)
+  new_deck.splice(new_deck.indexOf(card2), 1)
   return {
     type: 'SET_AI_CARDS',
-    payload: {aiCards: [card1, card2]}
+    payload: {deck: new_deck, aiCards: [card1, card2]}
   }
   debugger
 }
@@ -31,9 +33,12 @@ export function setUserCards(state) {
     rand2 = Math.floor(Math.random() * deck.length )
   }
   var card2 = deck[rand2]
+  var new_deck = Array.from(state.deck)
+  new_deck.splice(new_deck.indexOf(card1), 1)
+  new_deck.splice(new_deck.indexOf(card2), 1)
   return {
     type: 'SET_USER_CARDS',
-    payload: [card1, card2]
+    payload: {deck: new_deck, userCards: [card1, card2]}
   }
 }
 export function hitAi(state) {

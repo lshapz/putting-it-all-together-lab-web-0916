@@ -60,17 +60,10 @@ export default (state={}, action) => {
         ]
       }
     case 'SET_AI_CARDS': {
-      var new_deck = Array.from(state.deck)
-      new_deck.splice(new_deck.indexOf(action.payload[0]), 1)
-      new_deck.splice(new_deck.indexOf(action.payload[1]), 1)
-      return {userCards: state.userCards, aiCards: [].concat(state.aiCards, action.payload), deck: new_deck}
-      return [].concat(state.aiCards, action.payload)
+      return {userCards: state.userCards, aiCards: [].concat(state.aiCards, action.payload.aiCards), deck: action.payload.deck}
     }
     case 'SET_USER_CARDS': {
-      var new_deck = Array.from(state.deck)
-      new_deck.splice(new_deck.indexOf(action.payload[0]), 1)
-      new_deck.splice(new_deck.indexOf(action.payload[1]), 1)
-      return {userCards: [].concat(state.userCards, action.payload), aiCards: state.aiCards, deck: new_deck}
+      return {userCards: [].concat(state.userCards, action.payload.userCards), aiCards: state.aiCards, deck: action.payload.deck}
     }
     case 'HIT_AI':
       var new_deck = Array.from(state.deck)

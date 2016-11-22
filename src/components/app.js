@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import UserBlackjack from './user_blackjack'
-import AiBlackjack from './ai_blackjack'
+import AIBlackjack from './ai_blackjack'
 import { fetchDeck, setAICards, setUserCards, hitUser, hitAi } from '../actions/blackjack_actions'
 
 export default class App extends Component {
@@ -32,7 +32,7 @@ export default class App extends Component {
     }
     else {
       this.props.store.dispatch(hitAi(this.props.store.getState()))
-    }  
+    }
   }
   stay(event){
     debugger
@@ -47,12 +47,12 @@ export default class App extends Component {
   }
 
   render(){
-     
+
     return(
-      <div> 
+      <div>
       HELLO
-        <UserBlackjack store={this.props.store} userScore={this.calculateUserScore} handleUserHit={this.hitMe} handleStay={this.stay} />
-        <AiBlackjack store={this.props.store} aiScore={this.calculateAiScore} />
+        <UserBlackjack store={this.props.store.getState().userCards} userScore={this.calculateUserScore} handleUserHit={this.hitMe} handleStay={this.stay} />
+        <AIBlackjack store={this.props.store.getState().aiCards} aiScore={this.calculateAiScore} />
       </div>
     )
   }

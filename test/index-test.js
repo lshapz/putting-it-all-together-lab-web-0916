@@ -195,8 +195,8 @@ describe('Blackjack:', function(){
 
     before(function(){
       expect(AIBlackjack).toExist('<AIBlackjack /> not mounted')
-      wrapper = mount(<AIBlackjack aiCards={store.getState().aiCards} score={function(){}}/>)
-      component = shallow(<AIBlackjack aiCards={store.getState().aiCards} score={function(){}}/>)
+      wrapper = mount(<AIBlackjack aiCards={store.getState().aiCards} store={function(){}}/>)
+      component = shallow(<AIBlackjack aiCards={store.getState().aiCards} store={function(){}}/>)
     })
 
     it('should be a functional component', function(){
