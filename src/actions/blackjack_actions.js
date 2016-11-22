@@ -1,11 +1,13 @@
 import { store } from '../index.js'
 
 export function fetchDeck() {
-  store.dispatch('FETCH_DECK')
+  return {
+    type: 'FETCH_DECK'
+  }
 }
 
-export function setAICards(store) {
-  var deck = getState().deck
+export function setAICards(state) {
+  var deck = state.deck
   var rand1 = Math.floor(Math.random() * deck.length )
   var card1 = deck[rand1]
   var rand2 = Math.floor(Math.random() * deck.length )
@@ -16,11 +18,12 @@ export function setAICards(store) {
 
   return {
     type: 'SET_AI_CARDS',
-    payload: [card1, card2]
+    payload: {ai_cards: [card1, card2]}
   }
+  debugger
 }
-export function setUserCards(store) {
-  var deck = getState().deck
+export function setUserCards(state) {
+  var deck = state.deck
   var rand1 = Math.floor(Math.random() * deck.length )
   var card1 = deck[rand1]
   var rand2 = Math.floor(Math.random() * deck.length )
@@ -33,8 +36,8 @@ export function setUserCards(store) {
     payload: [card1, card2]
   }
 }
-export function hitAI(deck) {
-  var deck = getState().deck
+export function hitAi(state) {
+  var deck = state.deck
   var rand = Math.floor(Math.random() * deck.length )
   var card = deck[rand]
   return {
@@ -42,8 +45,8 @@ export function hitAI(deck) {
     payload: card
   }
 }
-export function hitUser() {
-  var deck = getState().deck
+export function hitUser(state) {
+  var deck = state.deck
   var rand = Math.floor(Math.random() * deck.length )
   var card = deck[rand]
   return {
