@@ -59,7 +59,19 @@ export default (state={}, action) => {
           {name:"King of Hearts", value: 10}
         ]
       }
-
+    case 'SET_AI_CARDS': {
+      var new_deck = Array.from(state.deck)
+      new_deck.splice(indexOf(action.payload[0]), 1)
+      new_deck.splice(indexOf(action.payload[1]), 1)
+      return {userCards: state.userCards, aiCards: [].concat(state.aiCards, action.payload), deck: new_deck}
+      return [].concat(state.aiCards, action.payload)
+    }
+    case 'SET_USER_CARDS': {
+      var new_deck = Array.from(state.deck)
+      new_deck.splice(indexOf(action.payload[0]), 1)
+      new_deck.splice(indexOf(action.payload[1]), 1)
+      return {userCards: [].concat(state.userCards, action.payload), aiCards: state.aiCards, deck: new_deck}
+    }
     default:
       return state
   }
