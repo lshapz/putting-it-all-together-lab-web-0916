@@ -72,6 +72,14 @@ export default (state={}, action) => {
       new_deck.splice(indexOf(action.payload[1]), 1)
       return {userCards: [].concat(state.userCards, action.payload), aiCards: state.aiCards, deck: new_deck}
     }
+    case 'HIT_AI':
+      var new_deck = Array.from(state.deck)
+      new_deck.splice(indexOf(action.payload), 1)
+      return {userCards: state.userCards, aiCards: [].concat(state.aiCards, action.payload), deck: new_deck}
+    case 'HIT_USER':
+      var new_deck = Array.from(state.deck)
+      new_deck.splice(indexOf(action.payload), 1)
+      return {userCards: [].concat(state.userCards, action.payload), aiCards: state.aiCards , deck: new_deck}
     default:
       return state
   }
