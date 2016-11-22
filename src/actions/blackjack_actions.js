@@ -18,7 +18,7 @@ export function setAICards(state) {
 
   return {
     type: 'SET_AI_CARDS',
-    payload: {ai_cards: [card1, card2]}
+    payload: {aiCards: [card1, card2]}
   }
   debugger
 }
