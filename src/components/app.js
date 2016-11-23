@@ -16,32 +16,28 @@ export default class App extends Component {
   calculateUserScore(){
     var userScore = this.props.store.getState().userCards.map( card => {
       return card.value
-    }).reduce( (a,b) => { return a + b}, 0)
-      // var index = [userScore.indexOf(1)]
-      // userScore[index] = 11
-      // //debugger
-      // userScore = userScore.reduce( function(a,b) { return parseInt(a) + parseInt(b) }, 0)
-    
-    if(userScore > 21){
+    }) //.reduce( (a,b) => { return a + b}, 0)
+    var displayScore = userScore.reduce( function(a,b) { return parseInt(a) + parseInt(b) }, 0)
+    if (userScore.indexOf(1) == true && displayScore <= 11 )
+          { displayScore += 10    }
+    if (displayScore > 21){
       return 'BUST'
     } else {
-      return userScore
+      return displayScore
     }
   }
 
   calculateAiScore(){
     var aiScore = this.props.store.getState().aiCards.map( card => {
       return card.value
-    }).reduce( (a,b) => { return a + b }, 0)
-      // var index = [aiScore.indexOf(1)]
-      // aiScore[index] = 11
-      // //debugger
-      // aiScore = aiScore.reduce( function(a,b) { return parseInt(a) + parseInt(b) }, 0)
-    
-    if (aiScore > 21){
+    }) //.reduce( (a,b) => { return a + b}, 0)
+    var displayScore = aiScore.reduce( function(a,b) { return parseInt(a) + parseInt(b) }, 0)
+    if (aiScore.indexOf(1) == true && displayScore <= 11 )
+          { displayScore += 10    }
+    if (displayScore > 21){
       return 'BUST'
     } else {
-      return aiScore
+      return displayScore
     }
   }
   scoreReducer(input){
