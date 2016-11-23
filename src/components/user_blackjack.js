@@ -5,6 +5,7 @@ export default function UserBlackjack(props) {
     var cards = props.userCards.map( card => {
       return <li>{card.name}</li>
     })
+    
   return(
 
       <div>
