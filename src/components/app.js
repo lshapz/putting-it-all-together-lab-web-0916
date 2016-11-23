@@ -10,15 +10,18 @@ export default class App extends Component {
     this.stay = this.stay.bind(this)
     this.calculateUserScore = this.calculateUserScore.bind(this)
     this.calculateAiScore = this.calculateAiScore.bind(this)
+    this.scoreReducer = this.scoreReducer.bind(this)
   }
 
   calculateUserScore(){
     var userScore = this.props.store.getState().userCards.map( card => {
       return card.value
-    }) 
-    //.reduce( (a,b) => { return a + b}, 0)
-    userScore = this.scoreReducer(userScore)
-
+    }).reduce( (a,b) => { return a + b}, 0)
+      // var index = [userScore.indexOf(1)]
+      // userScore[index] = 11
+      // //debugger
+      // userScore = userScore.reduce( function(a,b) { return parseInt(a) + parseInt(b) }, 0)
+    
     if(userScore > 21){
       return 'BUST'
     } else {
@@ -29,9 +32,12 @@ export default class App extends Component {
   calculateAiScore(){
     var aiScore = this.props.store.getState().aiCards.map( card => {
       return card.value
-    })
+    }).reduce( (a,b) => { return a + b }, 0)
+      // var index = [aiScore.indexOf(1)]
+      // aiScore[index] = 11
+      // //debugger
+      // aiScore = aiScore.reduce( function(a,b) { return parseInt(a) + parseInt(b) }, 0)
     
-    aiScore = this.scoreReducer(aiScore)
     if (aiScore > 21){
       return 'BUST'
     } else {
